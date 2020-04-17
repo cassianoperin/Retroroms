@@ -1,2 +1,2 @@
-# retroroms
-Retroroms download scripts
+# RetroRoms
+Retroroms scripts for automate roms and CHD downloads.
