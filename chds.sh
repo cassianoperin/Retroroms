@@ -4,7 +4,7 @@
 
 # Variables
 URL="https://bda.retroroms.info:82/downloads/mame/CHDs"
-report_name='chds_miss.txt' # CHD Foldersinside URL Path
+report_name='chds_miss.txt' # CHD Folders inside URL Path
 username=''
 password=''
 
