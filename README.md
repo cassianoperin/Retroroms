@@ -2,7 +2,8 @@
 Retroroms scripts for automate ROMs and CHDs downloads for MacOS.
 
 # Requisites:
-    `wget`, `curl` and `xmllint`
+    `brew install wget`
+    `brew install dos2unix`
 
 # Usage:
 
