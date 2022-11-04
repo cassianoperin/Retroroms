@@ -4,20 +4,27 @@ source auth.config
 
 # Variables
 tmp_file="index.tmp"
+tml_folder="CHDs"
+report_name="romcenter_report_miss_chds.txt"
+URL="https://bda.retroroms.info:82/downloads/mame/CHDs/"
+wget_options="-r --no-parent -nH --cut-dirs=2 --timeout=5 -t 1"
+wget_reject='*.js,*.css,*.ico,*.txt,*.gif,*.jpg,*.jpeg,*.png,*.mp3,*.pdf,*.tgz,*.flv,*.avi,*.mpeg,*.iso,*.chd,*.md5,index.html?*'
 
-URL="https://bda.retroroms.info:82/downloads/mame/CHDs"
-report_name='chd_list.txt' # CHD Folders inside URL Path
+# Convert report to Unix
+dos2unix $report_name
 
-# Retrieve the CHD list
-for CHD in $(cat $report_name) ; do
+# Donwload all the index of CHD folders
+wget $wget_options --reject $wget_reject --ignore-tags=img,link,script --header="Accept: text/html" $URL
 
-	# List the disk files (.chds) inside each CHD folder and download
-	curl $URL/$CHD/ > $tmp_file
+# Retrieve the missing CHDs
+for CHD in $( cat $report_name | grep -Ev '^$|^//' ) ; do
 
-	for FILE_NAME in $( xmllint --html $tmp_file | grep -i \\.chd  | grep -o "title=\".*\"" | awk -F'"' '{ print $2 }' ) ; do
-		wget -r -np -nc  --http-user=$username --http-password=$password -A chd $URL/$CHD/$FILE_NAME 
-	done
+	echo "################" $CHD
+	folder_name=$( grep -ir $CHD CHDs/* | cut -d'/' -f2 )
+	echo "FOLDER: " $folder_name
+	wget -r -np -nc --timeout=5 -t 2 --http-user=$username --http-password=$password -A chd $URL$folder_name/$CHD
 
 done
 
 rm -rf $tmp_file
+rm -rf $tml_folder

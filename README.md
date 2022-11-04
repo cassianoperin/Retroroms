@@ -1,5 +1,5 @@
 # Retroroms
-Retroroms scripts for automate ROMs and CHDs downloads.
+Retroroms scripts for automate ROMs and CHDs downloads for MacOS.
 
 # Requisites:
     `wget`, `curl` and `xmllint`
@@ -8,14 +8,12 @@ Retroroms scripts for automate ROMs and CHDs downloads.
 
 * Edit the 'auth.config' script and update the variables 'username' and 'password' with your https://www.retroroms.info account
 
-## ROMs
+* Generate the missing roms or CHDs report from Romcenter4 (of put the files you need to download like the example reports)
 
-*  Edit and 'roms.sh' script and set the 'URL' variable of desired files to download.
+## ROMs
 
 `./roms.sh`
 
 ## CHDs
-
-* Edit and 'chd_list.txt' script with the list of CHDs (one per line)
 
 `./chds.sh`
