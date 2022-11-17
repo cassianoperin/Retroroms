@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# The list is the output of Romcenter 4 Miss report with only the disk option selected
+
 source auth.config
 
 # Variables
