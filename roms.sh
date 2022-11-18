@@ -2,6 +2,8 @@
 
 # The list is the output of Romcenter 4 Miss report with unchecked disks, samples and description
 
+## To add a the password to Mac Keychain
+# security add-generic-password -T "" -a $LOGNAME -l Retroroms -s <username> -w
 source auth.config
 
 # Variables
